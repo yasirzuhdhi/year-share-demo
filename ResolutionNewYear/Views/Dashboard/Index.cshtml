@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ResolutionNewYear.Models.PostPage>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DasboardLayout.cshtml";
+}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                </i>
+            </div>
+            <div>
+                Start by creating a page
+                <div class="page-title-subheading">
+                    Create one with all the events that fits the theme of the page
+                </div>
+            </div>
+        </div>
+        <div class="page-title-actions">
+            <div class="d-inline-block dropdown">
+                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
+                    <span class="btn-icon-wrapper pr-2 opacity-7">
+                        <i class="fa fa-business-time fa-w-20"></i>
+                    </span>
+                    Create Page
+                </button>
+                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="@Url.Action("CreatePage", "Dashboard")" class="nav-link">
+                                <i class="nav-link-icon lnr-inbox"></i>
+                                <span>
+                                    New
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h5>Your pages</h5>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            if (item.CreatedBy == User.Identity.Name)
+            {
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 border-primary">
+                        <div class="card-body">
+                            <h3 class="card-title">Page of</h3>
+                            <p class="card-text">@item.Title</p>
+                                <a style="background-color: #3f6ad8" href="@Url.Action("PageDetails", "Dashboard", new { id = item.Id })" class="btn btn-primary">View Page</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+

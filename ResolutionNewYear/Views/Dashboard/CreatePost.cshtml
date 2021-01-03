@@ -1,0 +1,113 @@
+﻿@model ResolutionNewYear.Models.Post
+@{
+    ViewBag.Title = "CreatePost";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Create a post | YearShare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="colorlib.com">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="~/Content/Wizard/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/Content/Wizard/css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        @using (Html.BeginForm("CreatePost", "Dashboard", FormMethod.Post, new { @id = "wizard", enctype = "multipart/form-data"}))
+        {
+            <!-- SECTION 1 -->
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="~/Content/Architect/images/bg.png" alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>What's your post related to?</h3>
+                        </div>
+                        <p>Please fill with your details</p>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-row">
+                            <div class="select">
+                                <div class="form-holder w-100">
+                                    @Html.EnumDropDownListFor(model => model.PostedType, new { @class = "form-control w-100", @name = "PostType", @id = "PostType" })
+                                </div>
+                                <div class="form-holder"></div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <!-- SECTION 2 -->
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="~/Content/Architect/images/bg.png" alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>Content of the post</h3>
+                        </div>
+                        <p>Fill with additional info</p>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger"})
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "Title of the post" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <input type="file" id="file" class="form-control" name="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3 -->
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="~/Content/Architect/images/bg.png" alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>Description of the post</h3>
+                        </div>
+                        <p>A description on your post</p>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <textarea name="Description" id="Description" placeholder="Your description here!" class="form-control" style="height: 99px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <input type="submit" value="Submit" id="submit" class="btn-primary"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        }
+
+    </div>
+
+    <!-- JQUERY -->
+    <script src="~/Content/Wizard/js/jquery-3.3.1.min.js"></script>
+    <!-- JQUERY STEP -->
+    <script src="~/Content/Wizard/js/jquery.steps.js"></script>
+    <script src="~/Content/Wizard/js/main.js"></script>
+</body>
+</html>
+

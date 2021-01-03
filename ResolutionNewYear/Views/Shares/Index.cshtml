@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ResolutionNewYear.Models.Shares>
+@using ResolutionNewYear.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DasboardLayout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+
+}
+
+<div class="container">
+    <h5>Shared Pages</h5>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            if (item.SharedBy == User.Identity.Name)
+            {
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 border-primary">
+                        <div class="card-body">
+                            <h3 class="card-title">Shared To</h3>
+                            <p class="card-text">@item.SharedTo</p>
+                            <h3 class="card-title">Message</h3>
+                            <p class="card-text">@item.Message</p>
+                            <h3 class="card-title">Shared Page</h3>
+                            <p class="card-text">@item.PageId</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+
